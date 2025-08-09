@@ -1,10 +1,12 @@
 Introducción general
+
 Este programa tiene como objetivo representar cómo un sistema operativo administra dinámicamente la memoria RAM al ejecutar procesos. El simulador trabaja con una memoria limitada de 1 GB y una CPU, permitiendo crear procesos con parámetros como PID, nombre, memoria requerida y duración.
 La aplicación permite ejecutar varios procesos de forma simultánea mientras haya memoria disponible, y gestiona una cola de espera para los procesos que no puedan ejecutarse de inmediato. Al finalizar un proceso, su memoria se libera automáticamente. Además, se muestra en tiempo real el estado de la memoria y los procesos activos.
 
 Requisitos del sistema
 
 Requisitos de Software
+
 Sistema Operativo: Compatible con la mayoría de sistemas operativos modernos.
 Windows 10 o superior
 macOS 10.15 (Catalina) o superior
@@ -14,6 +16,7 @@ Bibliotecas de Python (Dependencias):
 PySide6: Es la dependencia principal para que toda la interfaz gráfica funcione. Se puede instalar fácilmente usando pip install pyside6.
 
 Requisitos de Hardware
+
 Dado que la aplicación es una simulación visual y no realiza cálculos extremadamente intensivos, los requisitos de hardware son bastante modestos.
 Procesador (CPU): Cualquier procesador moderno de doble núcleo (Intel Core i3, AMD Ryzen 3 o superior) es más que suficiente.
 Memoria RAM: Se recomienda un mínimo de 4 GB de RAM para que el sistema operativo y la aplicación se ejecuten cómodamente.
@@ -37,19 +40,23 @@ Este archivo contiene la lógica central del simulador, es decir cómo se compor
 
 
 gui.py
+
 Este archivo implementa la gui del simulador usando PySide6.
 •	La ventana principal (MainWindow), con un diseño dividido en paneles (memoria, procesos, estadísticas, etc.).
 •	Widgets personalizados como una barra de progreso circular para visualizar el uso de RAM.
 •	Controles de usuario como botones para crear procesos, pausar/reanudar la simulación, reiniciar todo, etc.
 •	Las tablas que muestran procesos en cola, en ejecución y finalizados.
 •	Conexión directa con la lógica de core.py para visualizar y controlar el comportamiento del simulador.
+
 main.py
+
 Este archivo es el punto de entrada del programa.
 •	Inicializa la aplicación Qt (QApplication).
 •	Crea e inicia la ventana principal (MainWindow del archivo gui.py).
 •	Lanza el bucle principal del programa con app.exec().
 
 Librerías
+
 •	uuid
 Genera identificadores únicos universales, los cuales son números de 128 bits únicos en cualquier contexto útiles para identificar registros.
 •	random
@@ -67,6 +74,7 @@ Pertenece al modulo “collections” y es una cola de dos extremos (double-ende
 
 
 Librerías externas
+
 •	QtWidgets
 Modulo para crear componentes visuales de una aplicación de escritorio, es decir que contiene botones, ventanas, menús, campos de entrada, etc.
 •	QtCore
@@ -76,6 +84,7 @@ Integra el sistema grafico del SO, maneja renderización de ventanas, formas, ge
 
 
 Clases y funciones
+
 core.py
 •	class Proceso
 Esta clase funciona como un “ladrillo” debido a que cada objeto creado a partir de esta clase es una simulación de un proceso real, es decir que funciona como un molde para objetos que representen un proceso de computadora, su objetivo principal es almacenar información relevante de un proceso individual.
@@ -104,6 +113,7 @@ Almacena el tiempo real que tardó el proceso desde que inició hasta que finali
 
 
 •	class GestorMemoria
+
 Guarda los recursos de la memoria en la simulación, lo único que maneja es cuanta memoria necesita un proceso y cuanta devuelve.
 Contiene 2 métodos:
 1.	asignar_memoria
@@ -130,6 +140,7 @@ Con time.sleep(1), las siguientes acciones ocurren una vez por segundo:
 Ahora, para la gestión de procesos y el control del programa (interacción programa-usuario) se usa lo siguiente › “agregar_proceso(proceso)” añade un nuevo proceso a la cola_espera, “intentar_ejecutar_procesos()” revisa la cola de espera y, si hay memoria disponible, mueve el proceso a la lista de ejecución, “iniciar_simulacion()” inicia el hilo secundario, poniendo en marcha el bucle “ejecutar_simulacion”, “pausar_simulacion()” y “reanudar_simulacion()” cambian el valor de la bandera “self.pausado” para detener o continuar el bucle, funcionando como una puerta.
 
 gui.py
+
 •	class CircularProgressBar
 Siendo aspectos de la gui, usa principalmente las librerías de PyQt o PySide; adentrándonos a la clase, podemos observar que la funcionalidad principal es crear un widget que muestra el progreso, en este caso una barra circular para finalmente colocar el porcentaje actual de memoria usada en el centro. Los puntos más importantes de esta clase son:
 	setValue(self, value) – encargado del progreso
@@ -171,6 +182,7 @@ python main.py
 
 
 Recomendaciones y mejoras futuras
+
 1.	Persistencia de datos
 •	Implementar un sistema de guardado (por ejemplo, en JSON o SQLite) para conservar el historial de procesos ejecutados, incluso después de cerrar la aplicación.
 •	Posibilidad de cargar un conjunto de procesos predefinidos al iniciar.
@@ -192,11 +204,15 @@ Recomendaciones y mejoras futuras
 •	Empaquetar el proyecto como una aplicación independiente (.exe, .app) usando herramientas como PyInstaller, para facilitar su distribución sin necesidad de Python.
 
 Pruebas
-Pantalla principal 
+
+Pantalla principal
+
 Se nos muestra una pestaña que nos muestra las funciones principales del programa para gestionar la memoria.
+
 ![alt text](image.png)
 
 Gestión de procesos
+
 La ventana de gestión de procesos contiene 3 casillas a llenar acompañada de 3 botones, a continuación, el uso correcto para llenar el formulario que seguidamente creara un proceso.
                         
 ![alt text](image-1.png)
@@ -204,28 +220,39 @@ La ventana de gestión de procesos contiene 3 casillas a llenar acompañada de 3
 ![alt text](image-2.png)
 
 Proceso en ejecución
+
 En esta ventana se mostrarán los procesos solicitados, tomando en cuenta la imagen anterior se observa que el proceso creado anteriormente está en ejecución.
+
 ![alt text](image-3.png)
 
 Detalles de proceso
+
 Al lado de la ventana de ejecución podemos observar detalles del proceso anterior, como características básicas y las estadísticas de uso.
+
 ![alt text](image-4.png)
 
 ![alt text](image-5.png)
 
 Uso de memoria
+
 El uso de memoria se mostrará en base a el máximo de memoria autorizada, además de contar con una función que demuestre cuanto porcentaje esta se esta usando.
+
 ![alt text](image-6.png)
 
 ![alt text](image-7.png)
 
 Cola
+
 Si varios procesos superan la memoria autorizada, se esperará a que terminen los procesos ocupantes de memoria y se coloca en cola a la espera de liberación de memoria.
+
 ![alt text](image-8.png)
 
 Errores o validaciones
+
 Comenzando con la ventana “Gestión de procesos” si asignamos un valor nulo dentro de las casillas (es decir que no colocamos nada) nos devuelve la siguiente ventana.
+
 ![alt text](image-9.png)
 
 Lo mismo sucede cuando queremos pasarnos de la cantidad asignada de memoria RAM.
+
 ![alt text](image-10.png) 
