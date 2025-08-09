@@ -62,7 +62,7 @@ class CustomErrorDialog(QDialog):
         self.setWindowTitle("Error de Validación")
         self.setModal(True) # Hace que el diálogo sea modal (bloquea la ventana principal)
 
-        # Aplicar estilos similares a la ventana principal
+        #Aplicar estilos similares a la ventana principal
         self.setStyleSheet("""
             QDialog { 
                 background-color: #1e293b; 
@@ -99,7 +99,7 @@ class CustomErrorDialog(QDialog):
 
         self.message_label = QLabel(message)
         self.message_label.setAlignment(Qt.AlignCenter)
-        # Se configura la política de tamaño para que el label se expanda verticalmente
+        #Se configura la política de tamaño para que el label se expanda verticalmente
         self.message_label.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
         layout.addWidget(self.message_label)
 
@@ -107,17 +107,21 @@ class CustomErrorDialog(QDialog):
         self.ok_button.clicked.connect(self.accept) # Cierra el diálogo al hacer clic
         layout.addWidget(self.ok_button, alignment=Qt.AlignCenter)
 
-        # Se ajusta el tamaño del diálogo al contenido
+        #Se ajusta el tamaño del diálogo al contenido
         self.adjustSize()
 
-
+#Configuramos la venta principal
 class MainWindow(QMainWindow):
+
     def __init__(self):
         super().__init__()
+        #Creamos la instancia del simulador que manejará la lógica interna
         self.simulador = Simulador()
+        #Para el titulo
         self.setWindowTitle("Simuladora de RAM")
         self.setGeometry(100, 100, 1400, 800)
 
+        #Aplicamos estilos css
         self.setStyleSheet("""
             QMainWindow, QWidget#centralWidget { background-color: #0f172a; color: #e2e8f0; font-family: 'Segoe UI', sans-serif; font-size: 14px; }
             QFrame#card { background-color: #1e293b; border-radius: 12px; padding: 15px; }
