@@ -4,7 +4,7 @@ import time #Para trabajar con funciones relaciones con el tiempo.
 import threading #Nos permite trabajar con multiples hilos
 
 #Esta clase es como la plantilla para cada proceso que creamos
-#Contiene toda la información relevante de un proceso individual
+#Contiene toda la información relevante de un proceso individual.
 class Proceso:
     def __init__(self, pid, nombre=None, memoria_mb=None, duracion_s=None):
         self.pid = pid #Identificador único del proceso
