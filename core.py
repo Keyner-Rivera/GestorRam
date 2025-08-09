@@ -51,9 +51,9 @@ class Simulador:
     def __init__(self):
         self.gestor_memoria = GestorMemoria()
         self.cola_espera = [] # Procesos esperando por RAM
-        self.procesos_en_ejecucion = {} #Diccionario para acceso rápido por PID
-        self.procesos_terminados = [] #Historial de procesos completados
-        self.proceso_id_counter = 0 #Para generar PIDs secuenciales
+        self.procesos_en_ejecucion = {} # Diccionario para acceso rápido por PID
+        self.procesos_terminados = [] # Historial de procesos completados
+        self.proceso_id_counter = 0 # Para generar PIDs secuenciales
         self.ejecutando = False #Flag para controlar el bucle principal del hilo
         self.pausado = False #Flag para pausar/reanudar la simulación
         self.estadisticas = {
