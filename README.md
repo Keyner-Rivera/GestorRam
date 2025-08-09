@@ -40,6 +40,8 @@ Una vez instaladas las dependencias, puedes iniciar la aplicación ejecutando el
 
 python main.py
 
+También puedes usar el botón "run" en lugar de iniciarlo desde terminal
+
 Tecnologías Utilizadas
 Python: El lenguaje de programación principal del proyecto.
 
