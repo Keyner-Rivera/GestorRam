@@ -200,7 +200,7 @@ class MainWindow(QMainWindow):
         self.timer.timeout.connect(self.actualizar_ui)
         self.timer.start(500)
 
-    #Creamos los panel base (contenedores) con un diseño y un titulo opcional
+    # Creamos los panel base (contenedores) con un diseño y un titulo opcional
     def _crear_panel_base(self, title):
         panel_frame = QFrame()
         panel_frame.setObjectName("card")
